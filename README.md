@@ -10,3 +10,25 @@ docker run -it -p 28000:27017 --name mongoContainer mongo:latest mongo
     > use banking
     > db.payments.find({nodeReference: "1e6e9e91-4af4-404c-bb23-a245be77dea4"})
     > db.payments.aggregate([{$graphLookup: {from: 'payments',startWith: '$parentNodeReference',connectFromField: 'parentNodeReference',connectToField: 'nodeReference',maxDepth: 3,depthField: 'nodeHierarchy',as: 'paymentTree'}}])
+
+
+[
+{
+$match:
+{
+nodeReference: "1e6e9e91-4af4-404c-bb23-a245be77dea4",
+},
+},
+{
+$graphLookup:
+{
+from: "payments",
+startWith: "$parentNodeReference",
+connectFromField: "parentNodeReference",
+connectToField: "nodeReference",
+maxDepth: 3,
+depthField: "nodeOrder",
+as: "paymentHierarchy",
+},
+}
+]
