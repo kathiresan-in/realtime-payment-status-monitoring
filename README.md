@@ -1,5 +1,7 @@
 docker run kathiresan2in/realtime-payment-status-monitoring:latest
+
 docker run -it -p 28000:27017 --name mongoContainer mongo:latest mongo
+
 1). Connect mongosh cli to atlas mongodb.
     Command: #/usr/bin/mongosh "mongodb+srv://connectingdots.vqwab5h.mongodb.net/" --apiVersion 1 --username kathiresan
 
